@@ -14,7 +14,7 @@
 // then write the names of variables and inspect them.
 
 
-/*Solution 1 */
+/*Solution 1 (My solution) */
 // function reverse(str) {
 //   const stringLength = str.length;
 //   const reverseStringArray = [];
