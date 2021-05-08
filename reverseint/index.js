@@ -9,20 +9,27 @@
 //   reverseInt(-90) === -9
 
 
-// Solution # 1 (My solution)
 const handleReverseString = (str) => {
   return str.split("").reduce((prev, curr) => curr + prev, "");
 };
 
+// Solution # 1 (**)
+
+// function reverseInt(n) {
+//   const numberToString = String(n);
+//   if ( Math.sign(n) === -1 ) {
+//     const stringWithoutNegativeSign = numberToString.slice(1, numberToString.length);
+//     const reversedStringWithNegativeSign = "-" + handleReverseString(stringWithoutNegativeSign);
+//     return Number(reversedStringWithNegativeSign);
+//   } else {
+//     return Number(handleReverseString(numberToString));
+//   }
+// }
+
+// Solution # 2 (I think this is more ideal)
 function reverseInt(n) {
-  const numberToString = String(n);
-  if ( Math.sign(n) === -1 ) {
-    const stringWithoutNegativeSign = numberToString.slice(1, numberToString.length);
-    const reversedStringWithNegativeSign = "-" + handleReverseString(stringWithoutNegativeSign);
-    return Number(reversedStringWithNegativeSign);
-  } else {
-    return Number(handleReverseString(numberToString));
-  }
+  const reversed = handleReverseString(n.toString());
+  return parseInt(reversed) * Math.sign(n);
 }
 
 module.exports = reverseInt;
