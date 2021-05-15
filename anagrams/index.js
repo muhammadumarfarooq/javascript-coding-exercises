@@ -8,34 +8,46 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
+//Solution # 1 (**)
+// function anagrams(stringA, stringB) {
+//
+//   const charMapStringA = buildCharMap(stringA);
+//   const charMapStringB = buildCharMap(stringB);
+//
+//   if ( Object.keys(charMapStringA).length !== Object.keys(charMapStringB).length ) {
+//     return false;
+//   }
+//
+//   for ( let key in charMapStringA ) {
+//     if ( charMapStringA[key] !== charMapStringB[key] ) {
+//       return false;
+//     }
+//   }
+//
+//   return true;
+// }
+//
+// function buildCharMap(string) {
+//   const charMap = {};
+//   const regx = /[^\w]/g;
+//   const formattedString = string.replace(regx, "").toLowerCase();
+//
+//   for ( let char of formattedString ) {
+//     charMap[char] = charMap[char] + 1 || 1;
+//   }
+//
+//   return charMap;
+// }
+
+//Solution # 2
 function anagrams(stringA, stringB) {
-  
-  const charMapStringA = buildCharMap(stringA);
-  const charMapStringB = buildCharMap(stringB);
-  
-  if ( Object.keys(charMapStringA).length !== Object.keys(charMapStringB).length ) {
-    return false;
-  }
-  
-  for ( let key in charMapStringA ) {
-    if ( charMapStringA[key] !== charMapStringB[key] ) {
-      return false;
-    }
-  }
-  
-  return true;
+  return buildSortedStringFromCharMap(stringA) === buildSortedStringFromCharMap(stringB);
 }
 
-function buildCharMap(string) {
-  const charMap = {};
+function buildSortedStringFromCharMap(string) {
   const regx = /[^\w]/g;
   const formattedString = string.replace(regx, "").toLowerCase();
-  
-  for ( let char of formattedString ) {
-    charMap[char] = charMap[char] + 1 || 1;
-  }
-  
-  return charMap;
+  return formattedString.split("").sort().join("");
 }
 
 module.exports = anagrams;
