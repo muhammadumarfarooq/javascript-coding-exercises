@@ -9,36 +9,33 @@
 //   anagrams('Hi there', 'Bye there') --> False
 
 function anagrams(stringA, stringB) {
-  const regx = /[^\w]/g;
-  const formattedStringA = stringA.replace(regx, "").toLowerCase();
-  const formattedStringB = stringB.replace(regx, "").toLowerCase();
   
-  if ( formattedStringA.length !== formattedStringB.length )
+  const charMapStringA = buildCharMap(stringA);
+  const charMapStringB = buildCharMap(stringB);
+  
+  if ( Object.keys(charMapStringA).length !== Object.keys(charMapStringB).length ) {
     return false;
-  
-  const charMapStringA = {};
-  const charMapStringB = {};
-  for ( let char of formattedStringA ) {
-    charMapStringA[char] = charMapStringA[char] + 1 || 1;
   }
-  
-  for ( let char of formattedStringB ) {
-    charMapStringB[char] = charMapStringB[char] + 1 || 1;
-  }
-  
-  let isStringAAnagrams = false;
-  let isStringBAnagrams = false;
   
   for ( let key in charMapStringA ) {
-    isStringAAnagrams = charMapStringA[key] === charMapStringB[key];
+    if ( charMapStringA[key] !== charMapStringB[key] ) {
+      return false;
+    }
   }
   
-  for ( let key in charMapStringB ) {
-    isStringBAnagrams = charMapStringB[key] === charMapStringA[key];
+  return true;
+}
+
+function buildCharMap(string) {
+  const charMap = {};
+  const regx = /[^\w]/g;
+  const formattedString = string.replace(regx, "").toLowerCase();
+  
+  for ( let char of formattedString ) {
+    charMap[char] = charMap[char] + 1 || 1;
   }
   
-  return isStringAAnagrams && isStringBAnagrams;
-  
+  return charMap;
 }
 
 module.exports = anagrams;
