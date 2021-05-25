@@ -17,11 +17,12 @@
 //       '### '
 //       '####'
 
+//Solution 1 (**)
 function steps(n) {
-  for ( let i = 1; i <= n; i++ ) {
+  for ( let row = 1; row <= n; row++ ) {
     let str = "";
-    for ( let j = 1; j <= n; j++ ) {
-      str += j <= i ? "#" : " ";
+    for ( let column = 1; column <= n; column++ ) {
+      str += column <= row ? "#" : " ";
     }
     console.log(str, str.length);
   }
