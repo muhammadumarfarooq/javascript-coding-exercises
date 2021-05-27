@@ -18,14 +18,29 @@
 //       '####'
 
 //Solution 1 (**)
-function steps(n) {
-  for ( let row = 1; row <= n; row++ ) {
-    let str = "";
-    for ( let column = 1; column <= n; column++ ) {
-      str += column <= row ? "#" : " ";
-    }
-    console.log(str, str.length);
+// function steps(n) {
+//   for ( let row = 1; row <= n; row++ ) {
+//     let str = "";
+//     for ( let column = 1; column <= n; column++ ) {
+//       str += column <= row ? "#" : " ";
+//     }
+//     console.log(str, str.length);
+//   }
+// }
+
+function steps(n, row = 0, str = "") {
+  if ( n === row ) {
+    return;
   }
+  
+  if ( n === str.length ) {
+    console.log(str);
+    steps(n, row + 1);
+    return;
+  }
+  
+  const add = str.length <= row ? "#" : " ";
+  steps(n, row, str + add);
 }
 
 module.exports = steps;
